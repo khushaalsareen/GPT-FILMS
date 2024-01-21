@@ -14,6 +14,7 @@ const Login = () => {
     const [errorMessage,setErrorMessage] = useState(null);
     const dispatch = useDispatch();
     const toggleSignInForm = ()=>{
+      setErrorMessage(null)
         setIsSign(!isSign)
     }
     const handleButtonClick=()=>{
@@ -45,9 +46,11 @@ const Login = () => {
         });
         // navigate('/browse');
        }).catch((error) => {
+        
          const errorCode = error.code;
         const errorMessage = error.message;
         setErrorMessage(errorCode + "-" + errorMessage)
+        
 
   });
      }
@@ -82,11 +85,14 @@ const Login = () => {
            {isSign ? <></>: <input ref={myName} type="text" placeholder='Full Name' className='p-4 my-4 w-full bg-gray-700'/>}
             <input ref={email} type="email" placeholder='Email Address' className='p-4 my-4 w-full bg-gray-700'/>
             <input ref={password} type="password" placeholder='Password' className='p-4 my-4 w-full bg-gray-700'/>
-            <p className='text-red-500 font-bold py-2 text-lg'>{errorMessage}</p>
+            
+            <p className='text-red-500 font-thin py-2 text-lg'>{errorMessage}</p>
+
             <button className='p-4 my-6 bg-red-700 w-full rounded-lg' onClick={handleButtonClick}>{isSign ? "Sign In" : "Sign Up"}</button>
-            <p className='py-4 cursor-pointer' onClick={toggleSignInForm}>
+            <p className='py-4 cursor-pointer font-bold' onClick={toggleSignInForm}>
             {isSign ? "New to Netflix? Sign Up Now" : "Already a user? Sign In"}
             </p>
+           
         </form>
     </div>
   )
