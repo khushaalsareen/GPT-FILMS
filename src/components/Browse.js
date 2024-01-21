@@ -7,11 +7,14 @@ import usePopularMovies from '../hooks/usePopularMovies';
 import useTrendingMovies from '../hooks/useTrendingMovies';
 import useUpcomingMovies from '../hooks/useUpcomingMovies';
 import GptSearch from './GptSearch';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { undoSearch } from '../utils/gptSlice';
 const Browse = () => {
+  const dispatch = useDispatch();
   const [hasSignedIn,setHasSignedIn] = useState(true);
-  const showGptSearch = useSelector(store=>store.gpt.showGptSearch)
-
+  const {showGptSearch,pressedSearch} = useSelector(store=>store.gpt)
+  if(showGptSearch===false)
+    dispatch(undoSearch())
   //Fetch data from TMDB API and update store
   useNowPlayingMovies();
   usePopularMovies();

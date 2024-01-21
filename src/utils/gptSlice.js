@@ -23,8 +23,11 @@ const gptSlice = createSlice({
         },
         pressedSearch: (state,action)=>{
             state.pressedSearch = true;
+        },
+        undoSearch: (state)=>{
+            state.pressedSearch = false;
         }
     }
 })
-export const {toggleGptSearchView,addGptMovieResult, clearGptMovieResult,pressedSearch} = gptSlice.actions
+export const {toggleGptSearchView,addGptMovieResult, clearGptMovieResult,pressedSearch,undoSearch} = gptSlice.actions
 export default gptSlice.reducer
