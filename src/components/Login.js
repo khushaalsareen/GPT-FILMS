@@ -8,6 +8,8 @@ import { addUser } from '../utils/userSlice';
 import { BG_URL, USER_AVATAR } from '../utils/constants';
 const Login = () => {
     const [isSign, setIsSign] = useState(true);
+    const [mailBind,setMailBind] = useState("");
+    const [passBind,setPassBind] = useState("");
     const email = useRef(null);
     const password = useRef(null);
     const myName = useRef(null);
@@ -16,6 +18,8 @@ const Login = () => {
     const toggleSignInForm = ()=>{
       setErrorMessage(null)
         setIsSign(!isSign)
+        setMailBind("");
+        setPassBind("")
     }
     const handleButtonClick=()=>{
         // validate the form data
@@ -83,8 +87,9 @@ const Login = () => {
                 isSign ? "Sign In" : "Sign Up"
             }</h1>
            {isSign ? <></>: <input ref={myName} type="text" placeholder='Full Name' className='p-4 my-4 w-full bg-gray-700'/>}
-            <input ref={email} type="email" placeholder='Email Address' className='p-4 my-4 w-full bg-gray-700'/>
-            <input ref={password} type="password" placeholder='Password' className='p-4 my-4 w-full bg-gray-700'/>
+            <input value={mailBind} ref={email} type="email" placeholder='Email Address' className='p-4 my-4 w-full bg-gray-700' onChange={e=>setMailBind(e.target.value)}/>
+            <input ref={password}
+            value={passBind} type="password" placeholder='Password' className='p-4 my-4 w-full bg-gray-700' onChange={e=>setPassBind(e.target.value)}/>
             
             <p className='text-red-500 font-thin py-2 text-lg'>{errorMessage}</p>
 
