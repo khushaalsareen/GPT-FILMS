@@ -3,7 +3,7 @@ import lang from '../utils/languageConstants'
 import { useDispatch, useSelector } from 'react-redux'
 import openai from '../utils/openai'
 import { API_OPTIONS } from '../utils/constants'
-import { addGptMovieResult, clearGptMovieResult, pressedSearch } from '../utils/gptSlice'
+import { addGptMovieResult, clearGptMovieResult, pressedSearch, undoSearch } from '../utils/gptSlice'
 
 const GptSearchBar = () => {
   const langKey = useSelector(store=>store.config.lang)
@@ -22,6 +22,7 @@ const GptSearchBar = () => {
     // Make an API call to GPT API and get Movie Results
     if(searchText.current.value ===""){
       dispatch(clearGptMovieResult())
+      dispatch(undoSearch())
       return null
     }
     dispatch(clearGptMovieResult())
