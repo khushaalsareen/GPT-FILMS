@@ -3,7 +3,7 @@ import lang from '../utils/languageConstants'
 import { useDispatch, useSelector } from 'react-redux'
 import openai from '../utils/openai'
 import { API_OPTIONS } from '../utils/constants'
-import { addGptMovieResult, clearGptMovieResult } from '../utils/gptSlice'
+import { addGptMovieResult, clearGptMovieResult, pressedSearch } from '../utils/gptSlice'
 
 const GptSearchBar = () => {
   const langKey = useSelector(store=>store.config.lang)
@@ -24,7 +24,9 @@ const GptSearchBar = () => {
       dispatch(clearGptMovieResult())
       return null
     }
-
+    dispatch(clearGptMovieResult())
+    dispatch(pressedSearch());
+   
     const gptQuery = "Act as a Movie Recommendation system and suggest some movies for thr query: " + searchText.current.value + ". only give me names of 5 movies, comma separated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya"
 
     const gptResults = await openai.chat.completions.create({
