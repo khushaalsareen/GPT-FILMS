@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { auth } from '../utils/firebase';
+import userIcon from '../assets/red-circle-logout-arrow-20586.svg'
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -65,7 +66,7 @@ const Header = ({displaySignOutFn,hasSignedIn}) => {
           
           <button className='py-2 px-4 m-2 bg-purple-800 text-white rounded-lg mx-4 my-2' onClick={handleGptSearchClick}>{showGptSearch ? "Homepage":"GPT Search"}</button>
         
-          <button className='font-bold text-white' onClick={handleButtonClick}><img className='w-12 h-12' src="https://occ-0-6247-2164.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABdpkabKqQAxyWzo6QW_ZnPz1IZLqlmNfK-t4L1VIeV1DY00JhLo_LMVFp936keDxj-V5UELAVJrU--iUUY2MaDxQSSO-0qw.png?r=e6e" alt="usericon" /></button>
+          <button className='font-bold text-white' onClick={handleButtonClick}><img className='w-12 h-12' src={userIcon} /></button>
          
         </div>
         }
