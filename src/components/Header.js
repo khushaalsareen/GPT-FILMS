@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { auth } from '../utils/firebase';
 import userIcon from '../assets/red-circle-logout-arrow-20586.svg'
+import logo from '../assets/AI-MOVIES.png'
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -56,7 +57,7 @@ const Header = ({displaySignOutFn,hasSignedIn}) => {
 
   return (
     <div className='absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between '>
-        <img className='w-44 mx-auto md:mx-0' src={LOGO} alt="logo" />
+        <img className='w-44 mx-auto md:mx-0' src={logo} alt="logo" />
 
         {hasSignedIn && 
           <div className='flex justify-between p-2'>
